@@ -4,7 +4,7 @@ class Game {
     val players: MutableList<Player> = addPlayers()
 
     private fun addPlayers(): MutableList<Player> {
-        println("How many people are playing?")
+        println("Enter number of players")
         val numOfPlayers = readLine()!!.toInt()
         val players = mutableListOf<Player>()
 

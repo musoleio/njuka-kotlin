@@ -1,4 +1,3 @@
-
 class Deck {
     var cards: MutableList<Card> = createDeck() // figure out how to make this prop immutable
 
@@ -17,21 +16,12 @@ class Deck {
 
     fun shuffle() = cards.shuffle()
 
-    fun dealCards(players: MutableList<Player>) = players.forEach { player ->
-        player.hand.addAll(cards.slice(0..2))
-        cards = cards.slice(3..cards.lastIndex).toMutableList()
+    fun dealCards(players: MutableList<Player>) {
+        players.forEach { player ->
+            player.hand.addAll(cards.slice(0..2))
+            cards = cards.slice(3..cards.lastIndex).toMutableList()
+        }
     }
 
     override fun toString(): String = "${cards.size} ${cards}"
-}
-
-fun main(args: Array<String>) {
-    val deck = Deck()
-    deck.shuffle()
-    val players = mutableListOf(Player("bob"), Player("max"))
-
-    deck.dealCards(players)
-    println (deck)
-
-    players.forEach(::println)
 }

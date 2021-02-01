@@ -3,14 +3,14 @@ class Player(
     val hand: MutableList<Card> = mutableListOf(),
 ) {
 
-    fun drawCard(deck: MutableList<Card>) = this.hand.add(deck.removeFirst())
+    fun drawCard(deck: MutableList<Card>) = hand.add(deck.removeFirst())
 
     fun dropCard() {
-        println("Enter the value of a card to drop")
-        val index = readLine()!!.toInt()
-        this.hand.removeIf { it.value == index }
+        println("drop one card!")
+        val toDrop = readLine()!!.toInt()
+        hand.removeIf { it.value == toDrop }
     }
 
-    override fun toString(): String = "${this.name} | ${this.hand}"
+    override fun toString(): String = "${name} | ${hand}"
 
 }
