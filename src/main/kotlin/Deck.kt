@@ -1,17 +1,15 @@
 class Deck {
-    var cards: MutableList<Card> = createDeck() // figure out how to make this prop immutable
+    private val suits = Suit.values()
+    private val ranks = Rank.values()
+    var cards: MutableList<Card> = createDeck()
+    val droppedCards: MutableList<Card> = mutableListOf()
+    val numberOfCards: Int
+        get() = cards.size
 
     private fun createDeck(): MutableList<Card> {
-        val suits = listOf("hearts", "clubs", "spades", "diamonds")
-
-        val cards = mutableListOf<Card>()
-        for (suit in suits) {
-            for (i in 1..10) {
-                cards.add(Card(suit = "$$suit", value = i))
-            }
-        }
-
-        return cards
+        return suits
+            .flatMap { suit -> ranks.map { rank -> Card(rank = rank, suit = suit) } }
+            .toMutableList()
     }
 
     fun shuffle() = cards.shuffle()
@@ -23,5 +21,5 @@ class Deck {
         }
     }
 
-    override fun toString(): String = "${cards.size} ${cards}"
+    override fun toString() = "${cards.size} $cards"
 }
